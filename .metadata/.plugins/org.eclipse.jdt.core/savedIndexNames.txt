@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+/Users/ersinmmiv/Documents/Schule/LF2/Richter/Java/SortingAlgorithm/.metadata/.plugins/org.eclipse.jdt.core
+1486510368.index
+2379612913.index
+1865797976.index
+3397553594.index
