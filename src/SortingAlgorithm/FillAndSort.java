@@ -20,16 +20,22 @@ public class FillAndSort extends Properties {
         ArrayList<Integer> uniqueNumbers = new ArrayList<>();
         int temp;
         boolean isUnique;
-        for (int i = 0; i < unsortedList.length; i++) {
-            do {
-                temp = rand.nextInt(1000);
-                if (!uniqueNumbers.contains(temp)) {
-                    unsortedList[i] = temp;
-                    uniqueNumbers.add(temp);
-                    isUnique = true;
-                } else
-                    isUnique = false;
-            } while (!isUnique);
+        if (!isSorted) {
+            for (int i = 0; i < unsortedList.length; i++) {
+                do {
+                    temp = rand.nextInt(1000);
+                    if (!uniqueNumbers.contains(temp)) {
+                        unsortedList[i] = temp;
+                        uniqueNumbers.add(temp);
+                        isUnique = true;
+                    } else
+                        isUnique = false;
+                } while (!isUnique);
+            }
+        } else {
+            for (int i = 0; i < unsortedList.length; i++) {
+                unsortedList[i] = i + 1;
+            }
         }
     }
 
@@ -94,20 +100,20 @@ public class FillAndSort extends Properties {
     }
 
     private static void outputInfo(SortEnums currentSort) {
-            System.out.println("________________________________");
-            System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
 
-            outputResultAscending(currentSort);
-            System.out.println("________________________________");
-            outputResultDescending(currentSort);
+        outputResultAscending(currentSort);
+        System.out.println("________________________________");
+        outputResultDescending(currentSort);
 
-            int j = currentSort.getCurrentSort();
-            System.out.println("Worst Case Anzahl vergleiche: " + worstCaseComp[j]);
-            System.out.println("Average Case Anzahl vergleiche: " + averageCaseComp[j]);
-            System.out.println("Best Case Anzahl vergleiche: " + bestCaseComp[j]);
-            System.out.println("Anzahl vergleiche: " + comparisons[j]);
-            System.out.println("Zeit in S: " + millisecondsList[0]);
-            System.out.println("Average Zeit in S: " + calculateAverageTime());
+        int j = currentSort.getCurrentSort();
+        System.out.println("Worst Case Anzahl vergleiche: " + worstCaseComp[j]);
+        System.out.println("Average Case Anzahl vergleiche: " + averageCaseComp[j]);
+        System.out.println("Best Case Anzahl vergleiche: " + bestCaseComp[j]);
+        System.out.println("Anzahl vergleiche: " + comparisons[j]);
+        System.out.println("Zeit in S: " + millisecondsList[0]);
+        System.out.println("Average Zeit in S: " + calculateAverageTime());
     }
 
 
