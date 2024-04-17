@@ -1,8 +1,6 @@
 package SortingAlgorithm;
+import org.jfree.data.xy.XYSeries;
 
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Properties {
@@ -20,4 +18,9 @@ public class Properties {
     public static int listSize;
     public static String chooseSort;
     public static boolean isSorted;
+
+    public static XYSeries BubbleSort = new XYSeries("bbs");
+    public static XYSeries QuickSort = new XYSeries("qks");
+    public static XYSeries InsertionSort = new XYSeries("ins");
+    public static XYSeries SelectionSort = new XYSeries("sls");
 }

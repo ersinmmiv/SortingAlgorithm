@@ -1,5 +1,8 @@
 package SortingAlgorithm;
 
+import org.jfree.data.xy.XYSeries;
+import org.jfree.ui.RefineryUtilities;
+
 import java.util.ArrayList;
 
 public class FillAndSort extends Properties {
@@ -7,12 +10,13 @@ public class FillAndSort extends Properties {
     private static final int firstUnsortedListLength = unsortedList.length;
     private static final int[][] firstResults = new int[4][listSize];
     private static final boolean[] firstResultSaved = new boolean[4];
-
+    private static XYLineChart_AWT chart = null;
 
     public static void start() {
         fillList();
         System.arraycopy(unsortedList, 0, unsortedListOriginal, 0, unsortedList.length);
         doSort();
+        createChart(chooseSort);
     }
 
 
@@ -60,6 +64,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[0] = true;
                     outputInfo(SortEnums.BUBBLE_SORT);
                 }
+                BubbleSort.add(sortedList.length, millisecondsList[0]);
             }
 
             //_______________________________________________________________
@@ -70,6 +75,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[1] = true;
                     outputInfo(SortEnums.QUICK_SORT);
                 }
+                QuickSort.add(sortedList.length, millisecondsList[1]);
             }
 
             //_______________________________________________________________
@@ -80,6 +86,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[2] = true;
                     outputInfo(SortEnums.INSERTION_SORT);
                 }
+                InsertionSort.add(sortedList.length, millisecondsList[2]);
             }
 
             //_______________________________________________________________
@@ -90,6 +97,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[3] = true;
                     outputInfo(SortEnums.SELECTION_SORT);
                 }
+                SelectionSort.add(sortedList.length, millisecondsList[3]);
             }
         }
     }
@@ -155,7 +163,41 @@ public class FillAndSort extends Properties {
             case SELECTION_SORT:
                 System.out.println("Selection-Sort");
                 break;
-
         }
+    }
+
+    private static void createChart(String currentSort) {
+        switch (currentSort) {
+//            case "BUBBLE_SORT" :
+            case "1":
+                createChartsingle(BubbleSort, "BubbleSort");
+                if (currentSort.contains("3") || currentSort.contains("4"))
+                    break;
+//            case "QUICK_SORT":
+            case "2":
+                createChartsingle(QuickSort, "QuickSort");
+                if (currentSort.contains("3") || !currentSort.contains("4"))
+                    break;
+//            case "INSERTION_SORT":
+            case "3":
+                createChartsingle(InsertionSort, "InsertionSort");
+                break;
+//            case "SELECTION_SORT":
+            case "4":
+                createChartsingle(SelectionSort, "SelectionSort");
+                break;
+            case "ALL":
+                chart = new XYLineChart_AWT("Auswertung Sortieralgorithmen", "Auswertung", currentSort.toString(), BubbleSort, QuickSort, InsertionSort, SelectionSort);
+                chart.pack();
+                RefineryUtilities.centerFrameOnScreen(chart);
+                chart.setVisible(true);
+        }
+    }
+
+    private static void createChartsingle(XYSeries set, String xAxisName) {
+        chart = new XYLineChart_AWT("Auswertung Sortieralgorithmen", "Auswertung", xAxisName, set);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen(chart);
+        chart.setVisible(true);
     }
 }
