@@ -13,8 +13,6 @@ public class BubbleSort extends Properties {
         duration = endTime - startTime;
         millisecondsList[0][count] = (duration / 1e9) * 1000;
 
-
-
         return sortedList;
     }
     private int[] performSort(int[] n) {

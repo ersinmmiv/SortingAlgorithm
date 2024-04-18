@@ -29,7 +29,7 @@ public class FillAndSort extends Properties {
         if (!isSorted) {
             for (int i = 0; i < unsortedList.length; i++) {
                 do {
-                    temp = rand.nextInt(1000);
+                    temp = rand.nextInt(unsortedList.length*2);
                     if (!uniqueNumbers.contains(temp)) {
                         unsortedList[i] = temp;
                         uniqueNumbers.add(temp);
@@ -52,11 +52,12 @@ public class FillAndSort extends Properties {
         if (chooseSort.toUpperCase().contains("ALL"))
             chooseAll = true;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 100; i++) {
             if (skippedFirstRun) {
                 increaseSizeAndFill();
-            } else
+            } else {
                 skippedFirstRun = true;
+            }
 
 
             if (chooseSort.contains("1") || chooseAll) {
@@ -177,7 +178,7 @@ public class FillAndSort extends Properties {
     }
 
     private static void createChart(String currentSort) {
-        switch (currentSort) {
+        switch (currentSort.toUpperCase()) {
             case "BUBBLE_SORT":
             case "1":
                 createChartsingle(BubbleSort, "BubbleSort");

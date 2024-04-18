@@ -21,8 +21,9 @@ public class MainClass extends Properties {
         5. ALL
 
         e.g.: "1,2,4" or "ALL"
+        But if you choose more than one Operation, the freechart will not work. Either choose all or one.
         */
-        chooseSort = "ALL";
+        chooseSort = "all";
 
         // Choose if list should already be sorted : true,false
         isSorted = false;
