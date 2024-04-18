@@ -1,6 +1,6 @@
 package SortingAlgorithm.Algorithms;
 
-import SortingAlgorithm.Properties;
+import SortingAlgorithm.Properties.Properties;
 
 public class BubbleSort extends Properties {
 
@@ -11,7 +11,8 @@ public class BubbleSort extends Properties {
 
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        millisecondsList[count] = duration / 1e9;
+        millisecondsList[0][count] = (duration / 1e9) * 1000;
+
 
 
         return sortedList;

@@ -1,6 +1,6 @@
 package SortingAlgorithm.Algorithms;
 
-import SortingAlgorithm.Properties;
+import SortingAlgorithm.Properties.Properties;
 
 public class InsertionSort extends Properties {
 
@@ -11,7 +11,7 @@ public class InsertionSort extends Properties {
 
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        millisecondsList[count] = duration / 1e9;
+        millisecondsList[2][count] = (duration / 1e9) * 1000;
 
         return sortedList;
     }

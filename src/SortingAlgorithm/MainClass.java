@@ -1,10 +1,12 @@
 package SortingAlgorithm;
 
+import SortingAlgorithm.Properties.Properties;
+
 public class MainClass extends Properties {
 
     public static void main(String[] args) {
         // Set size of unsorted List:
-        listSize = 50;
+        listSize = 100;
 
         unsortedList = new int[listSize];
         unsortedListOriginal = new int[listSize];
@@ -20,7 +22,7 @@ public class MainClass extends Properties {
 
         e.g.: "1,2,4" or "ALL"
         */
-        chooseSort = "1,3";
+        chooseSort = "ALL";
 
         // Choose if list should already be sorted : true,false
         isSorted = false;

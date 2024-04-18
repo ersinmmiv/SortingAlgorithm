@@ -1,4 +1,4 @@
-package SortingAlgorithm;
+package SortingAlgorithm.Enums;
 
 public enum SortEnums {
     BUBBLE_SORT(0),

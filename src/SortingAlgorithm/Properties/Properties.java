@@ -1,4 +1,4 @@
-package SortingAlgorithm;
+package SortingAlgorithm.Properties;
 import org.jfree.data.xy.XYSeries;
 
 import java.util.Random;
@@ -10,7 +10,7 @@ public class Properties {
     public static int[] unsortedListOriginal;
 
     public static long startTime, endTime, duration;
-    public static double[] millisecondsList = new double[10];
+    public static double[][] millisecondsList = new double[4][10];
 
     public static int[] unsortedList;
     public static int[] sortedList;

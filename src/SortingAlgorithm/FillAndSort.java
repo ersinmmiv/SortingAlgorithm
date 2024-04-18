@@ -1,5 +1,7 @@
 package SortingAlgorithm;
 
+import SortingAlgorithm.Enums.SortEnums;
+import SortingAlgorithm.Properties.Properties;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.ui.RefineryUtilities;
 
@@ -50,7 +52,7 @@ public class FillAndSort extends Properties {
         if (chooseSort.toUpperCase().contains("ALL"))
             chooseAll = true;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             if (skippedFirstRun) {
                 increaseSizeAndFill();
             } else
@@ -64,7 +66,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[0] = true;
                     outputInfo(SortEnums.BUBBLE_SORT);
                 }
-                BubbleSort.add(sortedList.length, millisecondsList[0]);
+                BubbleSort.add(sortedList.length, millisecondsList[0][i]);
             }
 
             //_______________________________________________________________
@@ -75,7 +77,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[1] = true;
                     outputInfo(SortEnums.QUICK_SORT);
                 }
-                QuickSort.add(sortedList.length, millisecondsList[1]);
+                QuickSort.add(sortedList.length, millisecondsList[1][i]);
             }
 
             //_______________________________________________________________
@@ -86,7 +88,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[2] = true;
                     outputInfo(SortEnums.INSERTION_SORT);
                 }
-                InsertionSort.add(sortedList.length, millisecondsList[2]);
+                InsertionSort.add(sortedList.length, millisecondsList[2][i]);
             }
 
             //_______________________________________________________________
@@ -97,7 +99,7 @@ public class FillAndSort extends Properties {
                     firstResultSaved[3] = true;
                     outputInfo(SortEnums.SELECTION_SORT);
                 }
-                SelectionSort.add(sortedList.length, millisecondsList[3]);
+                SelectionSort.add(sortedList.length, millisecondsList[3][i]);
             }
         }
     }
@@ -120,18 +122,26 @@ public class FillAndSort extends Properties {
         System.out.println("Average Case Anzahl vergleiche: " + averageCaseComp[j]);
         System.out.println("Best Case Anzahl vergleiche: " + bestCaseComp[j]);
         System.out.println("Anzahl vergleiche: " + comparisons[j]);
-        System.out.println("Zeit in S: " + millisecondsList[0]);
+        System.out.println("Zeit in S: " + millisecondsList[j][0]);
         System.out.println("Average Zeit in S: " + calculateAverageTime());
     }
 
 
     private static double calculateAverageTime() {
-        double average = 0;
-        for (double num : millisecondsList) {
-            average += num;
+        double sum = 0;
+        int count = 0;
+        for (double[] row : millisecondsList) {
+            for (double num : row) {
+                sum += num;
+                count++;
+            }
         }
-        return average / 10;
+        if (count == 0) {
+            return 0; // Um eine Division durch Null zu vermeiden
+        }
+        return sum / count;
     }
+
 
     private static void outputResultAscending(SortEnums currentSort) {
         algorithmTitle(currentSort);
@@ -168,26 +178,24 @@ public class FillAndSort extends Properties {
 
     private static void createChart(String currentSort) {
         switch (currentSort) {
-//            case "BUBBLE_SORT" :
+            case "BUBBLE_SORT":
             case "1":
                 createChartsingle(BubbleSort, "BubbleSort");
-                if (currentSort.contains("3") || currentSort.contains("4"))
                     break;
-//            case "QUICK_SORT":
+            case "QUICK_SORT":
             case "2":
                 createChartsingle(QuickSort, "QuickSort");
-                if (currentSort.contains("3") || !currentSort.contains("4"))
                     break;
-//            case "INSERTION_SORT":
+            case "INSERTION_SORT":
             case "3":
                 createChartsingle(InsertionSort, "InsertionSort");
                 break;
-//            case "SELECTION_SORT":
+            case "SELECTION_SORT":
             case "4":
                 createChartsingle(SelectionSort, "SelectionSort");
                 break;
             case "ALL":
-                chart = new XYLineChart_AWT("Auswertung Sortieralgorithmen", "Auswertung", currentSort.toString(), BubbleSort, QuickSort, InsertionSort, SelectionSort);
+                chart = new XYLineChart_AWT("Auswertung Sortieralgorithmen", "Auswertung", currentSort, BubbleSort, QuickSort, InsertionSort, SelectionSort);
                 chart.pack();
                 RefineryUtilities.centerFrameOnScreen(chart);
                 chart.setVisible(true);
